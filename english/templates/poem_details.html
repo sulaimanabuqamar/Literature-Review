@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/details.css' %}">
+    <title>Inside Creative Minds - Poem Details</title>
+</head>
+<body>
+    <header>
+        <div class="title">Inside Creative Minds</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'books' %}">Books</a></li>
+                <li><a href="{% url 'poems' %}">Poems</a></li>
+                <li><a href="{% url 'stories' %}">Stories</a></li>
+                <li><a href="{% url 'articles' %}">Articles</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="read-button">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="read-button">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="fill">
+            <div class="book-info">
+                <div class="image-container">
+                    <img src="{{ poem_detail.cover.url }}" alt="Poem Cover">
+                </div>
+                <div class="poem-details">
+                    <h2>{{ poem_detail.title }}</h2>
+                    <h3>By {{ poem_detail.author }}</h3>
+                    <p>{{ poem_detail.description }}</p>
+                </div>  
+                <a href="{{ poem.link }}" class="box">
+                    <button>Read</button>
+                </a>
+            </div>
+            <div class="reviews">
+                <h2>Reviews</h2>
+                <div class="post-review">
+                    <h3>Post a Review</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="review">Review:</label>
+                        <input class="reviewbox" name="review" ></input>
+                        
+                        <div class="horizontal">
+                            <label for="rating">Rating:</label>
+                            <select class="submit" name="rating" required>
+                                <option value="1">1 star</option>
+                                <option value="2">2 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="5">5 stars</option>
+                            </select>
+                            
+                            <button class="submit" type="submit">Submit Review</button>
+                        </div>
+                    </form>
+                </div>                
+            </div>
+            
+            {% for review in poem_reviews %}
+            <div class="review">
+                <h3>Rating: {{ review.rating }}/5</h3>
+                <h4>By: {{ review.reviewer }}</h4>
+                <p>{{ review.review }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>  
+</body>
+</html>

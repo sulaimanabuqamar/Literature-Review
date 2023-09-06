@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+    <title>Inside Creative Minds</title>
+</head>
+<body>
+    <header>
+        <div class="title">Inside Creative Minds</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'books' %}">Books</a></li>
+                <li><a href="{% url 'poems' %}">Poems</a></li>
+                <li><a href="{% url 'stories' %}">Stories</a></li>
+                <li><a href="{% url 'articles' %}">Articles</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="read-button">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="read-button">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            <p>Welcome to the Mind’s Cosmic Dance, where Creativity Transcends into Ethereal Trance</p>
+            <a href="{% url 'books' %}" class="read-button">Read Books →</a>
+        </div>
+    </main>
+</body>
+</html>

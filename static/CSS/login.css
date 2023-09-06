@@ -1,0 +1,60 @@
+/* login.css */
+
+/* Apply the background color and font family from your existing styles */
+body {
+    background-color: burlywood;
+    font-family: 'Felipa', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Style the login form container */
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #D6C1A9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Style the form elements */
+.login-container label {
+    font-size: 18px;
+    font-family: 'Sura', sans-serif;
+    display: block;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container button[type="submit"] {
+    background-color: #333;
+    color: burlywood;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Center the login form on the page */
+.center-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
